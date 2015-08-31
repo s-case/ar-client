@@ -27,5 +27,10 @@
     	<version>2.19</version>
     	<scope>provided</scope>
 	</dependency>
+	<dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20141113</version>
+	</dependency>
   </dependencies>
 </project>
