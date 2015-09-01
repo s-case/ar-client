@@ -1,6 +1,5 @@
 package com.scasefp7.assets_repo_client;
 
-import java.nio.charset.Charset;
 import java.util.Base64;
 
 import javax.ws.rs.client.Client;
@@ -14,7 +13,7 @@ public class Retriever
 {
 	private static String baseURL = "http://109.231.121.125:8080/s-case/assetregistry";
 	
-	private static String projectName = "eng";
+	private static String projectName = "ent";
 	
     public static void main( String[] args )
     {
@@ -33,6 +32,7 @@ public class Retriever
         	JSONArray arr = obj.getJSONArray("artefacts");
         	for(int i = 0; i < arr.length(); i++) {
         		JSONObject artefact = arr.getJSONObject(i);
+        		System.out.println(artefact.getString("description"));
         		if(artefact.getString("type").equalsIgnoreCase("TEXTUAL")) {
         			JSONArray payloads = artefact.getJSONArray("payload");
         			for(int j = 0; j < payloads.length(); j++) {
@@ -48,14 +48,9 @@ public class Retriever
         	arr = new JSONArray(search);
         	System.out.println("Artefacts found: " + arr.length());
         	System.out.println("***Make a search by query***");
-        	byte[] bytes = "user".getBytes(Charset.forName("UTF-8"));
-//        	String byteArray = new String();
-//        	for(byte b : bytes) {
-//        		byteArray += b;
-//        		byteArray += ",";
-//        	}
-//        	byteArray = byteArray.substring(0, byteArray.lastIndexOf(","));
-        	search = client.target(baseURL + "/artefact/search?query=" + Base64.getEncoder().encodeToString(bytes)).request().get(String.class);
+        	search = client.target(baseURL + "/artefact/search?query='As%20a%20user'").request().get(String.class);
+        	arr = new JSONArray(search);
+        	System.out.println("Artefacts found: " + arr.length());
         	System.out.println(search);
         } finally {
         	client.close();

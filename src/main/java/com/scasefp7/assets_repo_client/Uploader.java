@@ -14,7 +14,7 @@ public class Uploader
 {
 	private static String baseURL = "http://109.231.121.125:8080/s-case/assetregistry";
 	
-	private static String projectName = "eng";
+	private static String projectName = "ent";
 	
     public static void main( String[] args )
     {
@@ -47,6 +47,7 @@ public class Uploader
 	        	json = "{"
 	        		+ "\"projectName\": \""+ projectName +"\","
 	        		+ "\"type\": \"TEXTUAL\","
+	        		+ "\"description\": \"" + str + "\","
 	        		+ "\"payload\": ["
 	        		+ "{\"type\":\"TEXTUAL\","
 	        			+ "\"format\":\"TEXT_UTF8\","
